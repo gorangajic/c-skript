@@ -1,0 +1,49 @@
+{
+  "name": "c-script-vscode",
+  "displayName": "ћ-скрипт",
+  "description": "Syntax highlighting and commands for ћ-скрипт (.ћс files)",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onLanguage:c-script"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "c-script",
+        "aliases": ["ћ-скрипт"],
+        "extensions": [".ћс"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "c-script",
+        "scopeName": "source.c-script",
+        "path": "./syntaxes/c-script.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "c-script.transpile",
+        "title": "ћ-скрипт: Преведи тренутни фајл"
+      },
+      {
+        "command": "c-script.run",
+        "title": "ћ-скрипт: Покрени тренутни фајл"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --format=cjs --platform=node --external:vscode"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.7.0",
+    "@c-script/core": "workspace:*"
+  }
+}

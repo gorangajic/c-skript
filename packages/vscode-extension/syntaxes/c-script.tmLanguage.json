@@ -1,0 +1,184 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ћ-скрипт",
+  "scopeName": "source.c-script",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#regex" },
+    { "include": "#numbers" },
+    { "include": "#storage" },
+    { "include": "#keywords" },
+    { "include": "#operator-new" },
+    { "include": "#constants" },
+    { "include": "#types" },
+    { "include": "#builtins" },
+    { "include": "#variables" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.c-script",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.c-script",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.c-script",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.c-script" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.c-script" } },
+          "patterns": [
+            {
+              "name": "constant.character.escape.c-script",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.c-script",
+          "begin": "'",
+          "end": "'",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.c-script" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.c-script" } },
+          "patterns": [
+            {
+              "name": "constant.character.escape.c-script",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.template.c-script",
+          "begin": "`",
+          "end": "`",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.c-script" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.c-script" } },
+          "patterns": [
+            {
+              "name": "constant.character.escape.c-script",
+              "match": "\\\\."
+            },
+            {
+              "name": "meta.template.expression.c-script",
+              "begin": "\\$\\{",
+              "end": "\\}",
+              "beginCaptures": { "0": { "name": "punctuation.definition.template-expression.begin.c-script" } },
+              "endCaptures": { "0": { "name": "punctuation.definition.template-expression.end.c-script" } },
+              "patterns": [
+                { "include": "source.c-script" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "regex": {
+      "patterns": [
+        {
+          "name": "string.regexp.c-script",
+          "begin": "(?<=[=(:,\\[!&|?{;]|^)\\s*(/)(?![/*])",
+          "end": "(/)([gimsuy]*)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.string.begin.c-script" }
+          },
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.string.end.c-script" },
+            "2": { "name": "keyword.other.c-script" }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.c-script",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.c-script",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.binary.c-script",
+          "match": "\\b0[bB][01]+\\b"
+        },
+        {
+          "name": "constant.numeric.octal.c-script",
+          "match": "\\b0[oO][0-7]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.c-script",
+          "match": "\\b[0-9]+(\\.[0-9]+)?([eE][+-]?[0-9]+)?\\b"
+        }
+      ]
+    },
+    "storage": {
+      "patterns": [
+        {
+          "name": "storage.type.c-script",
+          "match": "(?<![\\p{L}])(нека|заклето)(?![\\p{L}])"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.c-script",
+          "match": "(?<![\\p{L}])(ако|иначе|док|за|заСваког|прекини|настави|случај|кад|подразумевано|функција|врати|покушај|ухвати|наКрају|баци|увези|извези|из|као|чекај|асинхроно|класа|наслеђује)(?![\\p{L}])"
+        }
+      ]
+    },
+    "operator-new": {
+      "patterns": [
+        {
+          "name": "keyword.operator.new.c-script",
+          "match": "(?<![\\p{L}])прави(?![\\p{L}])"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.c-script",
+          "match": "(?<![\\p{L}])(тачно|нетачно|ништа|нијеНишта)(?![\\p{L}])"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.c-script",
+          "match": "(?<![\\p{L}])(број|реч|истина|низ|објекат|празно|никад|билоШта|непознато)(?![\\p{L}])"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.c-script",
+          "match": "(?<![\\p{L}])(кажи|дериСе|кукај)(?![\\p{L}])"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.language.c-script",
+          "match": "(?<![\\p{L}])(ово|супер)(?![\\p{L}])"
+        }
+      ]
+    }
+  }
+}

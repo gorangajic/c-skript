@@ -1,0 +1,17 @@
+{
+  "name": "c-script-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ћ-скрипт — комични српски програмски језик који се преводи у JavaScript",
+  "type": "module",
+  "scripts": {
+    "build": "turbo build",
+    "test": "turbo test",
+    "dev": "turbo dev"
+  },
+  "keywords": ["serbian", "programming-language", "transpiler", "javascript", "humor"],
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  }
+}
