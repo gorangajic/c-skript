@@ -1,6 +1,6 @@
 # ћ-скрипт (Ć-Script)
 
-Комични српски програмски језик који се преводи у JavaScript. 🇷🇸
+Комични српски програмски језик који се преводи у TypeScript. 🇷🇸
 
 A humorous Serbian programming language that transpiles to JavaScript.
 
