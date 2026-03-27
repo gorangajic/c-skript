@@ -6,7 +6,7 @@ A humorous Serbian programming language that transpiles to JavaScript.
 
 ## Здраво свете (Hello World)
 
-```
+```ts
 заклето поздрав = "Здраво свете!"
 кажи(поздрав)
 
