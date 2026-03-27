@@ -4,6 +4,8 @@
 
 A humorous Serbian programming language that transpiles to JavaScript.
 
+[Игралиште (Playground)](https://gorangajic.github.io/c-skript/)
+
 ## Здраво свете (Hello World)
 
 ```ts
