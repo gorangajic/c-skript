@@ -1,4 +1,5 @@
 import * as monaco from "monaco-editor";
+import ts from "typescript";
 import { transpile, translateError } from "@c-script/core";
 import "./style.css";
 
@@ -175,6 +176,46 @@ const EXAMPLES: Record<string, string> = {
 } наКрају {
     кажи("Крај рачунања.")
 }
+`,
+
+  "типови": `// Типови у ћ-скрипту (као TypeScript)
+
+заклето поздрав: реч = "Здраво свете!"
+нека године: број = 25
+нека активан: истина = тачно
+
+// Функција са типовима
+функција сабери(а: број, б: број): број {
+    врати а + б
+}
+
+кажи(поздрав)
+кажи("Године: " + године)
+кажи("Активан: " + активан)
+кажи("2 + 3 = " + сабери(2, 3))
+
+// Низ са типом
+заклето имена: низ<реч> = ["Марко", "Јована", "Никола"]
+кажи("Имена: " + имена)
+
+// Објекат
+заклето особа: објекат = { име: "Горан", године: 30 }
+кажи("Особа: " + JSON.stringify(особа))
+
+// Функција која не враћа ништа
+функција поздрави(име: реч): празно {
+    кажи("Ћао, " + име + "!")
+}
+
+поздрави("Марко")
+
+// Било шта и непознато
+нека нешто: билоШта = 42
+нешто = "сад сам реч"
+кажи("Било шта: " + нешто)
+
+нека мистерија: непознато = "ко зна шта сам"
+кажи("Непознато: " + мистерија)
 `,
 };
 
@@ -380,13 +421,27 @@ function clearConsole() {
 }
 
 // ---------------------------------------------------------------------------
+// Strip TypeScript-style type annotations so transpiled code runs as plain JS
+// ---------------------------------------------------------------------------
+
+function stripTypes(code: string): string {
+  const result = ts.transpileModule(code, {
+    compilerOptions: {
+      target: ts.ScriptTarget.ESNext,
+      module: ts.ModuleKind.ESNext,
+    },
+  });
+  return result.outputText;
+}
+
+// ---------------------------------------------------------------------------
 // Run in sandboxed iframe
 // ---------------------------------------------------------------------------
 
 function runCode() {
   clearConsole();
 
-  const jsCode = outputEditor.getValue();
+  const jsCode = stripTypes(outputEditor.getValue());
   if (!jsCode || jsCode.startsWith("// Грешка")) {
     appendConsole("Не могу да покренем — код садржи грешке.", "error");
     return;
