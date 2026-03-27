@@ -33,6 +33,33 @@ html, body, #app {
   color: #e94560;
 }
 
+#header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#example-select {
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #0f3460;
+  border-radius: 6px;
+  background: #1a1a2e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238892b0'/%3E%3C/svg%3E") no-repeat right 10px center;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#example-select:hover {
+  border-color: #e94560;
+}
+
+#example-select:focus {
+  border-color: #e94560;
+}
+
 #run-btn {
   padding: 8px 20px;
   border: none;
