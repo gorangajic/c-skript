@@ -89,7 +89,7 @@ A humorous Serbian programming language that transpiles to JavaScript.
 
 ### Класе и наслеђивање
 
-```
+```ts
 класа Човек {
     constructor(име, године) {
         ово.име = име
@@ -119,7 +119,7 @@ A humorous Serbian programming language that transpiles to JavaScript.
 
 ### Асинхроно програмирање
 
-```
+```ts
 асинхроно функција направиКафу() {
     кажи("☕ Правим кафу...")
     чекај сачекај(1000)
